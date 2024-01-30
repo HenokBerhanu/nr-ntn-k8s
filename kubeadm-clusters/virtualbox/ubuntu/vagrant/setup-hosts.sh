@@ -16,7 +16,6 @@ sed -e "/^.*$2.*/d" -i /etc/hosts
 cat >> /etc/hosts <<EOF
 ${NETWORK}.11  kubemaster
 ${NETWORK}.21  kubenode01
-${NETWORK}.22  kubenode02
 EOF
 
 # Expoert internal IP as an environment variable
