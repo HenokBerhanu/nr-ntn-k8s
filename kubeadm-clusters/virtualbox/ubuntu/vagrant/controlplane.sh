@@ -1,5 +1,5 @@
 {
-POD_CIDR=10.244.0.0/16
+POD_CIDR=10.244.0.0/16  # 172.16.0.0/16
 SERVICE_CIDR=10.96.0.0/16
 
 kubeadm init --pod-network-cidr $POD_CIDR --service-cidr $SERVICE_CIDR --apiserver-advertise-address $INTERNAL_IP
