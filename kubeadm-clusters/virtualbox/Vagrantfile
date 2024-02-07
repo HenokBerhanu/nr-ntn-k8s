@@ -6,8 +6,8 @@
 NUM_WORKER_NODE = 1
 
 IP_NW = "192.168.56."
-MASTER_IP_START = 11
-NODE_IP_START = 20
+MASTER_IP_START = 102
+NODE_IP_START = 120
 
 # Sets up hosts file and DNS
 def setup_dns(node)

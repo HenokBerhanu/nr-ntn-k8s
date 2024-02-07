@@ -1,10 +1,50 @@
-{
-POD_CIDR=10.244.0.0/16  # 172.16.0.0/16
-SERVICE_CIDR=10.96.0.0/16
 
-kubeadm init --pod-network-cidr $POD_CIDR --service-cidr $SERVICE_CIDR --apiserver-advertise-address $INTERNAL_IP
+###################################################
+sudo kubeadm config images pull >/dev/null
+#################################################
 
-kubectl --kubeconfig /etc/kubernetes/admin.conf \
-    apply -f "https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s-1.11.yaml"
+##################################################
+# kubelet requires swap off
+sudo -i
+swapoff -a
+exit
+##############################################
 
-}
+##########################################################
+# keep swap off after reboot
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+###################################################
+
+#################################################################################################################
+sudo kubeadm init --apiserver-advertise-address=192.168.56.102 --pod-network-cidr=172.16.0.0/16
+#################################################################################################################
+
+#########################################################################
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+##################################################################
+
+###############################################################
+export KUBECONFIG=/etc/kubernetes/admin.conf
+##################################################################
+
+##################################################################
+sudo stat -c %a /etc/kubernetes/admin.conf
+##################################################################
+
+################################################
+sudo chmod 644 /etc/kubernetes/admin.conf
+################################################
+
+#####################################################################################################################################
+# install Calico pod network addon
+kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/tigera-operator.yaml >/dev/null
+#####################################################################################################################################
+
+##############################################################################################################################################
+kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/custom-resources.yaml >/dev/null
+#####################################################################################################################################
+
+sudo systemctl status kubelet
+sudo systemctl status kubelet.service
