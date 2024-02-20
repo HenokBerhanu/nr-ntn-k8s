@@ -57,3 +57,8 @@ sudo stat -c %a /etc/kubernetes/admin.conf
 ################################################
 sudo chmod 644 /etc/kubernetes/admin.conf
 ################################################
+
+#######################How do you know if your k8s cluster has Roll-Based Access Control (RBAC)?#############################
+kubectl api-versions ## or 
+kubectl api-versions | grep rbac.authorization.k8s.io/v1
+###########################################################################################################
