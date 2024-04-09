@@ -62,3 +62,21 @@ sudo chmod 644 /etc/kubernetes/admin.conf
 kubectl api-versions ## or 
 kubectl api-versions | grep rbac.authorization.k8s.io/v1
 ###########################################################################################################
+
+
+###########################################################################################################
+#Install Multus cni with flannel:
+      https://github.com/k8snetworkplumbingwg/multus-cni
+
+#Install helm chart in the cluster: 
+             #Check if installed: 
+             helm version
+             helm list --all-namespaces
+             #Then install from the package manager (ubuntu): 
+             https://helm.sh/docs/intro/using_helm/
+             https://helm.sh/docs/intro/quickstart/
+             https://helm.sh/docs/intro/install/
+###########################################################################################################
+
+# I am creating a single node cluster, make sure to taint the control plane restriction to schedule pods in it
+kubectl taint node --all node-role.kubernetes.io/control-plane:NoSchedule-
