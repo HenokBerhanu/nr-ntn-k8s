@@ -15,9 +15,8 @@ sed -e "/^.*$2.*/d" -i /etc/hosts
 # Update /etc/hosts about other hosts
 cat >> /etc/hosts <<EOF
 ${NETWORK}.102  kmaster
+${NETWORK}.121  nrntn1
 EOF
-#${NETWORK}.121  nrntn1
 #${NETWORK}.122  nrntn2
-
 # Expoert internal IP as an environment variable
 echo "INTERNAL_IP=${ADDRESS}" >> /etc/environment

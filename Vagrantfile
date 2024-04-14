@@ -3,7 +3,7 @@
 
 # Define the number of master and worker nodes
 # If this number is changed, remember to update setup-hosts.sh script with the new hosts IP details in /etc/hosts of each VM.
-NUM_WORKER_NODE = 0
+NUM_WORKER_NODE = 1
 
 IP_NW = "192.168.56."
 MASTER_IP_START = 102
@@ -48,14 +48,14 @@ Vagrant.configure("2") do |config|
   config.vm.box_check_update = false
 
   # Provision Master Nodes
-  config.vm.define "kntn" do |node|
+  config.vm.define "kmaster" do |node|
     # Name shown in the GUI
     node.vm.provider "virtualbox" do |vb|
-      vb.name = "kntn"
-      vb.memory = 32768  #8192
-      vb.cpus = 8 #3
+      vb.name = "kmaster"
+      vb.memory = 8192
+      vb.cpus = 3 #3
     end
-    node.vm.hostname = "kntn"
+    node.vm.hostname = "kmaster"
     node.vm.network :private_network, ip: IP_NW + "#{MASTER_IP_START}"
     node.vm.network "forwarded_port", guest: 22, host: "#{2710}"
     provision_kubernetes_node node
@@ -69,8 +69,8 @@ Vagrant.configure("2") do |config|
     config.vm.define "nrntn#{i}" do |node|
       node.vm.provider "virtualbox" do |vb|
         vb.name = "nrntn#{i}"
-        vb.memory = 1024 #16384
-        vb.cpus = 1 #4
+        vb.memory = 32768 #1024 16384
+        vb.cpus = 6 #4
       end
       node.vm.hostname = "nrntn#{i}"
       node.vm.network :private_network, ip: IP_NW + "#{NODE_IP_START + i}"
