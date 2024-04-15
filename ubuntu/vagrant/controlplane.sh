@@ -8,6 +8,17 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ##################################################################
 
+#########################################################################################3
+sudo stat -c %a /etc/kubernetes/admin.conf
+sudo chmod 644 /etc/kubernetes/admin.conf
+###############################################################################
+
+########################################################################################
+sudo -i
+swapoff -a
+exit
+###########################################################################################
+
 #####################################################################################################
 # Install Flannel CNI, the pod network cidr shall be 10.244.0.0/16
 kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
@@ -67,16 +78,20 @@ kubectl api-versions | grep rbac.authorization.k8s.io/v1
 ###########################################################################################################
 #Install Multus cni with flannel:
       https://github.com/k8snetworkplumbingwg/multus-cni
+#Visit this site for NAD 
+     https://ubuntu.com/kubernetes/docs/cni-multus
+#################################################################################################################
 
+#############################################################################################################
 #Install helm chart in the cluster: 
-             #Check if installed: 
+             #Check if installed:
              helm version
              helm list --all-namespaces
              #Then install from the package manager (ubuntu): 
              https://helm.sh/docs/intro/using_helm/
-             https://helm.sh/docs/intro/quickstart/
-             https://helm.sh/docs/intro/install/
+#Or better to use snap for ubuntu jammy:      
+            sudo snap install helm --classic
 ###########################################################################################################
 
-# I am creating a single node cluster, make sure to taint the control plane restriction to schedule pods in it
+# I am creating a single node cluster, make sure to taint the control plane restriction to schedule pods in it (This is only for microk8s)
 kubectl taint node --all node-role.kubernetes.io/control-plane:NoSchedule-
