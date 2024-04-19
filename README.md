@@ -23,3 +23,5 @@ For the kubernetes installation:  got to this directory /nr-ntn-k8s/ubuntu/vagra
           Has RBAC support
           Master node IP: 192.168.56.120
           Worker node IP: 192.168.56.102
+
+# For detailed instruction about k8s refer the /docs folder
