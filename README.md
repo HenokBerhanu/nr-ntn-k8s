@@ -1,4 +1,4 @@
-# 3 Node kubeadm cluster on VirtualBox
+# 2 Node kubeadm cluster on VirtualBox
 
 Updated November 2023
 
