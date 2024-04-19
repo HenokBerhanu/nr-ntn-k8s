@@ -25,3 +25,11 @@ For the kubernetes installation:  got to this directory /nr-ntn-k8s/ubuntu/vagra
           Worker node IP: 192.168.56.102
 
 # For detailed instruction about k8s refer the /docs folder
+
+# Install Multus cni with flannel:
+      https://github.com/k8snetworkplumbingwg/multus-cni
+
+# Install helm chart in the cluster: 
+             Check if installed: helm list --all-namespaces
+             Then install from the package manager (ubuntu): https://helm.sh/docs/intro/quickstart/
+              https://helm.sh/docs/intro/using_helm/
