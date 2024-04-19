@@ -1,7 +1,5 @@
 # Prerequisites
 
-If you have an M-series (Apple Silicon) Mac, you cannot run VirtualBox. Please instead see our [Apple Silicon](../../apple-silicon/) guide.
-
 ## VM Hardware Requirements
 
 8 GB of RAM
@@ -34,17 +32,6 @@ Download and Install [Vagrant](https://www.vagrantup.com/) on your platform.
 This tutorial assumes that you have also installed Vagrant.
 
 This lab was last tested with Vagrant 2.3.7, though newer versions should be ok.
-
-## Lab Defaults
-
-The labs have been configured with the following networking defaults. If you change any of these after you have deployed any of the lab, you'll need to completely reset it and start again from the beginning:
-
-```bash
-vagrant destroy -f
-vagrant up
-```
-
-If you do change any of these, **please consider that a personal preference and don't submit a PR for it**.
 
 ### Virtual Machine Network
 
