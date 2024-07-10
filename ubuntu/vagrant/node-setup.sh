@@ -1,5 +1,9 @@
-
-###########################################
+#################################################
+#https://kubernetes.io/ go to the documentation and search for "install kubeadm"
+#These instructions are for Kubernetes v1.29.
+#################################################
+#Install container runtime invironmnet (CRI)
+###############################################
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
